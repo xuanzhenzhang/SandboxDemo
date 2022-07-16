@@ -20,6 +20,7 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
+import MDProgress from "components/MDProgress";
 
 // Images
 import team2 from "assets/images/team-2.jpg";
@@ -29,7 +30,7 @@ import team4 from "assets/images/team-4.jpg";
 export default function data() {
   const Land = ({ image, name }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" />
+      <img src={image} alt={name} width={50} style={{ borderRadius: 5 }} />
       <MDBox ml={2} lineHeight={1}>
         <MDTypography display="block" variant="button" fontWeight="medium">
           {name}
@@ -38,103 +39,80 @@ export default function data() {
     </MDBox>
   );
 
-  const Author = ({ image, name, email }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" />
-      <MDBox ml={2} lineHeight={1}>
-        <MDTypography display="block" variant="button" fontWeight="medium">
-          {name}
-        </MDTypography>
-        <MDTypography variant="caption">{email}</MDTypography>
-      </MDBox>
-    </MDBox>
-  );
-
-  const Job = ({ title, description }) => (
-    <MDBox lineHeight={1} textAlign="left">
-      <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
-        {title}
+  const Popularity = ({ color, value }) => (
+    <MDBox display="flex" alignItems="center">
+      <MDTypography variant="caption" color="text" fontWeight="medium">
+        {value}%
       </MDTypography>
-      <MDTypography variant="caption">{description}</MDTypography>
+      <MDBox ml={0.5} width="9rem">
+        <MDProgress variant="gradient" color={color} value={value} />
+      </MDBox>
     </MDBox>
   );
+
+  // const Author = ({ image, name, email }) => (
+  //   <MDBox display="flex" alignItems="center" lineHeight={1}>
+  //     <MDAvatar src={image} name={name} size="sm" />
+  //     <MDBox ml={2} lineHeight={1}>
+  //       <MDTypography display="block" variant="button" fontWeight="medium">
+  //         {name}
+  //       </MDTypography>
+  //       <MDTypography variant="caption">{email}</MDTypography>
+  //     </MDBox>
+  //   </MDBox>
+  // );
+
+  // const Job = ({ title, description }) => (
+  //   <MDBox lineHeight={1} textAlign="left">
+  //     <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
+  //       {title}
+  //     </MDTypography>
+  //     <MDTypography variant="caption">{description}</MDTypography>
+  //   </MDBox>
+  // );
 
   return {
     columns: [
-      { Header: "Event Type", accessor: "eventType", width: "45%", align: "left" },
-      { Header: "Item", accessor: "item", align: "left" },
-      { Header: "Token Id", accessor: "tokenId", align: "center" },
-      { Header: "Item Image", accessor: "itemImg", align: "center" },
-      { Header: "Price", accessor: "price", align: "center" },
-      { Header: "Appraisal Value", accessor: "lastAppraisal", align: "center" },
-      { Header: "Popularity", accessor: "popularity", align: "center" },
-      { Header: "Timestamp", accessor: "time", align: "center" },
+      { Header: "Image & Name", accessor: "item", align: "left" },
+      { Header: "Token Id", accessor: "tokenId", align: "left" },
+      { Header: "Current Price (ETH)", accessor: "currentPrice", align: "left" },
+      { Header: "Last sale (ETH)", accessor: "salePrice", align: "left" },
+      { Header: "Last sale date", accessor: "saleDate", align: "left" },
+      { Header: "Popularity", accessor: "popularity", align: "left" },
+      { Header: "Real time Appraisal value", accessor: "appraisalValue", align: "left" },
+      { Header: "Undervalued / overvalued", accessor: "isUndervalued", align: "left" },
     ],
 
     rows: [
       {
-        eventType: "Sale",
-        item: <Land image={team2} name="LAND (114, 180)" email="john@creative-tim.com" />,
+        item: <Land image={team2} name="LAND (114, 180)" />,
         tokenId: "1",
-        itemImg: (
-          <MDAvatar
-            src="https://lh3.googleusercontent.com/kmcvzSI3NSQQ3Vx6l6SchPNy1hF8ytM7LH4256bKz3onBBlNYNdpBi9N8Cam-2hc9YLRtRBniIHkSZS0bUEKZVLaClhkDmBZ1_tItms"
-            name="LAND (114, 180)"
-            size="sm"
-          />
-        ),
-        price: 3.5,
-        lastAppraisal: -0.8407833953,
-        popularity: 99,
-        time: "2022-07-07",
+        currentPrice: 0.3,
+        salePrice: 0.23,
+        saleDate: "2022-07-15",
+        popularity: <Popularity color="warning" value={30} />,
+        appraisalValue: 0.4,
+        isUndervalued: "Undervalued",
       },
       {
-        eventType: "Sale",
-        item: <Land image={team2} name="LAND (114, 180)" email="john@creative-tim.com" />,
-        tokenId: "10",
-        itemImg: (
-          <MDAvatar
-            src="https://lh3.googleusercontent.com/kmcvzSI3NSQQ3Vx6l6SchPNy1hF8ytM7LH4256bKz3onBBlNYNdpBi9N8Cam-2hc9YLRtRBniIHkSZS0bUEKZVLaClhkDmBZ1_tItms"
-            name="LAND (114, 180)"
-            size="sm"
-          />
-        ),
-        price: 100,
-        lastAppraisal: -0.8407833953,
-        popularity: 99,
-        time: "2022-07-07",
+        item: <Land image={team2} name="LAND (200, 180)" />,
+        tokenId: "1",
+        currentPrice: 0.73,
+        salePrice: 0.63,
+        saleDate: "2022-07-15",
+        popularity: <Popularity color="success" value={10} />,
+        appraisalValue: 0.5,
+        isUndervalued: "Overvalued",
       },
       {
-        eventType: "Sale",
-        item: <Land image={team2} name="LAND (114, 180)" email="john@creative-tim.com" />,
-        tokenId: "10000",
-        itemImg: (
-          <MDAvatar
-            src="https://lh3.googleusercontent.com/kmcvzSI3NSQQ3Vx6l6SchPNy1hF8ytM7LH4256bKz3onBBlNYNdpBi9N8Cam-2hc9YLRtRBniIHkSZS0bUEKZVLaClhkDmBZ1_tItms"
-            name="LAND (114, 180)"
-            size="sm"
-          />
-        ),
-        price: null,
-        lastAppraisal: -0.8407833953,
-        popularity: 99,
-        time: "2022-07-07",
-      },
-      {
-        eventType: "Sale",
-        item: <Land image={team2} name="LAND (114, 180)" email="john@creative-tim.com" />,
-        tokenId: "1000",
-        itemImg: (
-          <MDAvatar
-            src="https://lh3.googleusercontent.com/kmcvzSI3NSQQ3Vx6l6SchPNy1hF8ytM7LH4256bKz3onBBlNYNdpBi9N8Cam-2hc9YLRtRBniIHkSZS0bUEKZVLaClhkDmBZ1_tItms"
-            name="LAND (114, 180)"
-            size="sm"
-          />
-        ),
-        price: null,
-        lastAppraisal: -0.8407833953,
-        popularity: 99,
-        time: "2022-07-07",
+        item: <Land image={team2} name="LAND (100, 180)" />,
+        tokenId: "1",
+        currentPrice: 0.13,
+        salePrice: 0.13,
+        saleDate: "2022-07-15",
+        popularity: <Popularity color="info" value={70} />,
+        appraisalValue: 0.2,
+        isUndervalued: "Undervalued",
       },
     ],
   };
