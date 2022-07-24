@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useState, useEffect } from "react";
 
 // react-router components
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
@@ -27,10 +27,12 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
+import Link from "@mui/material/Link";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
+import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
 import Breadcrumbs from "examples/Breadcrumbs";
@@ -52,6 +54,9 @@ import {
   setMiniSidenav,
   setOpenConfigurator,
 } from "context";
+
+// image
+import logoSandBox from "assets/images/logos/sandbox_logo.png";
 
 function DashboardNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
@@ -131,7 +136,46 @@ function DashboardNavbar({ absolute, light, isMini }) {
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
         <MDBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
-          <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} />
+          <img
+            src={logoSandBox}
+            alt="Sandbox"
+            width={60}
+            style={{ borderRadius: 5, marginRight: "20px" }}
+          />
+          <MDBox mr={{ xs: 0, xl: 8 }}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "dark"} noWrap>
+              Sandbox
+            </MDTypography>
+            <Link href="https://www.sandbox.game" target="_blank">
+              <MDTypography variant="h6" fontWeight="light">
+                www.sandbox.game
+              </MDTypography>
+            </Link>
+          </MDBox>
+          <MDBox mr={{ xs: 0, xl: 8 }}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "dark"} noWrap>
+              160K ETH
+            </MDTypography>
+            <MDTypography variant="h6" fontWeight="light">
+              Market cap
+            </MDTypography>
+          </MDBox>
+          <MDBox mr={{ xs: 0, xl: 8 }}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "dark"} noWrap>
+              260K ETH
+            </MDTypography>
+            <MDTypography variant="h6" fontWeight="light">
+              Volume
+            </MDTypography>
+          </MDBox>
+          <MDBox mr={{ xs: 0, xl: 8 }}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "dark"} noWrap>
+              2 ETH
+            </MDTypography>
+            <MDTypography variant="h6" fontWeight="light">
+              Floor
+            </MDTypography>
+          </MDBox>
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
