@@ -88,20 +88,6 @@ export function LiveTable() {
   const [liveData, setLiveData] = useState([]);
   const [seconds, setSeconds] = useState(0);
 
-  const onChangeMode = () => {
-    if (isLiveMode) {
-      setIsLiveMode(false);
-      // setTimestamp(-1);
-      // setLiveData([]);
-    } else {
-      setIsLiveMode(true);
-    }
-  };
-
-  // const [seconds, setSeconds] = useState(1);
-  // const [includebids, setIncludeBids] = useState(false);
-  // const [includebids, setIncludeBids] = useState(false);
-
   function randomDoubleFromInterval(min, max) {
     return Math.random() * (max - min) + min;
   }
@@ -112,14 +98,6 @@ export function LiveTable() {
     const tempLiveData = [];
     let tsTemp = -1;
 
-    // "primary",
-    // "secondary",
-    // "info",
-    // "success",
-    // "warning",
-    // "error",
-    // "light",
-    // "dark",
     await axios
       .get(
         ts === -1
@@ -174,7 +152,7 @@ export function LiveTable() {
                   color="text"
                   fontWeight="medium"
                 >
-                  {price}
+                  {price.toString().substring(0, 4)}
                 </MDTypography>
               ),
               time: (
@@ -197,7 +175,7 @@ export function LiveTable() {
                   color="text"
                   fontWeight="medium"
                 >
-                  {appraisalValue}
+                  {appraisalValue.toString().substring(0, 4)}
                 </MDTypography>
               ),
             });
@@ -211,39 +189,18 @@ export function LiveTable() {
         // setLiveData(() => tempLiveData);
       })
       .then(() => setTimestamp(tsTemp))
-      .then(
-        () => setLiveData((current) => [...tempLiveData, ...current])
-        // setLiveData((liveData) => {
-        //   tempLiveData.forEach((dataPiece) => {
-        //     liveData.push(dataPiece);
-        //   });
-        //   return liveData;
-        // })
-      );
+      .then(() => setLiveData((current) => [...tempLiveData, ...current]));
   };
 
   useEffect(() => {
-    // const interval = setInterval(() => {
-    //   if (isLiveMode) {
     fetchEventsData(-1);
-    // }
-    // }, 5000);
-    // return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // setSeconds(() => seconds + 1);
       fetchEventsData(liveData[0].event_timestamp);
     }, 10000);
     return () => clearInterval(interval);
-    // const interval = setInterval(() => {
-    //   if (isLiveMode) {
-    // fetchEventsData(timestamp);
-
-    // }
-    // }, 5000);
-    // return () => clearInterval(interval);
   }, [liveData]);
 
   const columns = [
@@ -253,7 +210,7 @@ export function LiveTable() {
     { Header: "Price (ETH)", accessor: "price", align: "left" },
     { Header: "Time / Date", accessor: "time", align: "left" },
     { Header: "Popularity", accessor: "popularity", align: "left" },
-    { Header: "Real time Appraisal value", accessor: "appraisalValue", align: "left" },
+    { Header: "Real time Appraisal", accessor: "appraisalValue", align: "left" },
   ];
 
   const rows = [

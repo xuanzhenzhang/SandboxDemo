@@ -31,6 +31,19 @@ import team4 from "assets/images/team-4.jpg";
 import React, { useEffect, useState } from "react";
 import fakeData from "./fakeData.json";
 
+function Heat({ color, value }) {
+  return (
+    <MDBox display="flex" alignItems="center">
+      <MDTypography variant="caption" color="text" fontWeight="medium">
+        {value}%
+      </MDTypography>
+      <MDBox ml={0.5} width="9rem">
+        <MDProgress variant="gradient" color={color} value={value} />
+      </MDBox>
+    </MDBox>
+  );
+}
+
 export default function data() {
   const Land = ({ image, name }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
@@ -43,16 +56,16 @@ export default function data() {
     </MDBox>
   );
 
-  const Popularity = ({ color, value }) => (
-    <MDBox display="flex" alignItems="center">
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {value}%
-      </MDTypography>
-      <MDBox ml={0.5} width="9rem">
-        <MDProgress variant="gradient" color={color} value={value} />
-      </MDBox>
-    </MDBox>
-  );
+  // const Popularity = ({ color, value }) => (
+  //   <MDBox display="flex" alignItems="center">
+  //     <MDTypography variant="caption" color="text" fontWeight="medium">
+  //       {value}%
+  //     </MDTypography>
+  //     <MDBox ml={0.5} width="9rem">
+  //       <MDProgress variant="gradient" color={color} value={value} />
+  //     </MDBox>
+  //   </MDBox>
+  // );
 
   const [timestamp, setTimestamp] = useState(-1);
   const [staticData, setStaticData] = useState([]);
@@ -63,6 +76,21 @@ export default function data() {
 
   const processedFakeData = [];
   fakeData.data.forEach((dat) => {
+    const heatValue = Math.floor(Math.random() * 100) + 1;
+    let color = "info";
+    if (heatValue <= 15) {
+      color = "light";
+    } else if (heatValue > 15 && heatValue <= 30) {
+      color = "info";
+    } else if (heatValue > 30 && heatValue <= 45) {
+      color = "success";
+    } else if (heatValue > 45 && heatValue <= 60) {
+      color = "warning";
+    } else if (heatValue > 60 && heatValue <= 80) {
+      color = "error";
+    } else {
+      color = "primary";
+    }
     let appraisalValue = dat.lastPrice * randomDoubleFromInterval(0.8, 1.25);
     if (appraisalValue === 0) {
       appraisalValue = 2 * randomDoubleFromInterval(0.8, 1.25);
@@ -96,12 +124,23 @@ export default function data() {
       // popularity: <Popularity color="warning" value={30} />,
       appraisalValue: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {appraisalValue}
+          {appraisalValue.toString().substring(0, 4)}
         </MDTypography>
       ),
-      isUndervalued: appraisalValue <= currentPrice ? "overvalued" : "undervalued",
+      // isUndervalued: appraisalValue <= currentPrice ? "overvalued" : "undervalued",
+      heat: <Heat color={color} value={heatValue} />,
     });
   });
+
+  /*
+  "primary",
+    "secondary",
+    "info",
+    "success",
+    "warning",
+    "error",
+    "light",
+    "dark", */
 
   // const fetchStaticEventsData = async () => {
   //   // eslint-disable-next-line global-require
@@ -233,8 +272,8 @@ export default function data() {
       { Header: "Last sale (ETH)", accessor: "salePrice", align: "left" },
       { Header: "Last sale date", accessor: "saleDate", align: "left" },
       // { Header: "Popularity", accessor: "popularity", align: "left" },
-      { Header: "Real time Appraisal value", accessor: "appraisalValue", align: "left" },
-      { Header: "Undervalued / overvalued", accessor: "isUndervalued", align: "left" },
+      { Header: "Real time Appraisal", accessor: "appraisalValue", align: "left" },
+      { Header: "Heat", accessor: "heat", align: "left" },
     ],
 
     rows: processedFakeData,
