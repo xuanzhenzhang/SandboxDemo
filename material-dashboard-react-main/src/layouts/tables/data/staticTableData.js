@@ -132,15 +132,105 @@ export default function data() {
     });
   });
 
-  /*
-  "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "light",
-    "dark", */
+  //   https://us-central1-jtlabs-63b31.cloudfunctions.net/sandboxListings/listings
+
+  const fetchRealStaticData = async () => {
+    // eslint-disable-next-line global-require
+    const axios = require("axios");
+    const digits = 1000000000000000000;
+    const token_ids = [];
+    await axios
+      .get("https://us-central1-jtlabs-63b31.cloudfunctions.net/sandboxListings/listings")
+      .then((res) => {
+        const listingsInfo = res.data.message.rows;
+        const tempStaticDataDict = [];
+        for (let i = 0; i < listingsInfo.length; i++) {
+          const listingInfo = listingsInfo[i];
+          const { token_id, last_listing_price, listing_history } = listingInfo;
+          token_ids.push(token_id);
+          const parsedListingHistory = JSON.parse(listing_history);
+          const { image_url, name } = parsedListingHistory[0].asset;
+
+          tempStaticDataDict.push({
+            item: <Land image={image_url} name={name} />,
+            tokenId: (
+              <MDTypography
+                component="a"
+                href="#"
+                variant="caption"
+                color="text"
+                fontWeight="medium"
+              >
+                {token_id}
+              </MDTypography>
+            ),
+            currentPrice: (
+              <MDTypography
+                component="a"
+                href="#"
+                variant="caption"
+                color="text"
+                fontWeight="medium"
+              >
+                {last_listing_price / digits}
+              </MDTypography>
+            ),
+            salePrice: (
+              <MDTypography
+                component="a"
+                href="#"
+                variant="caption"
+                color="text"
+                fontWeight="medium"
+              >
+                {/* {asset_event.total_price} */}
+                {0}
+              </MDTypography>
+            ),
+            saleDate: (
+              <MDTypography
+                component="a"
+                href="#"
+                variant="caption"
+                color="text"
+                fontWeight="medium"
+              >
+                {/* {asset_event.listing_time} */}
+                {0}
+              </MDTypography>
+            ),
+            // popularity: <Popularity color="warning" value={30} />,
+            appraisalValue: (
+              <MDTypography
+                component="a"
+                href="#"
+                variant="caption"
+                color="text"
+                fontWeight="medium"
+              >
+                100000
+              </MDTypography>
+            ),
+            isUndervalued: "Undervalued",
+          });
+        }
+        return tempStaticDataDict;
+      })
+      // .then((tempStaticDataDict) => {
+      //   axios
+      //     .get("https://us-central1-jtlabs-63b31.cloudfunctions.net/sandboxSales/sales", {
+      //       data: token_ids,
+      //     })
+      //     .then((res) => {
+      //       const salesInfo = res.data.message.rows;
+      //     });
+      // })
+      .then((tempStaticDataList) => setStaticData(() => tempStaticDataList));
+  };
+
+  useEffect(() => {
+    fetchRealStaticData();
+  }, []);
 
   // const fetchStaticEventsData = async () => {
   //   // eslint-disable-next-line global-require
@@ -231,39 +321,6 @@ export default function data() {
   //     .then((tempStaticData) => setStaticData(() => tempStaticData));
   // };
 
-  // useEffect(() => {
-  //   // const interval = setInterval(() => {
-  //   //   if (isLiveMode) {
-  //   //     console.log("timestamp", timestamp);
-  //   //     console.log("assets", liveData);
-  //   //     fetchEventsData(timestamp);
-  //   //   }
-  //   // }, 1000);
-  //   // return () => clearInterval(interval);
-  //   fetchStaticEventsData();
-  // }, []);
-
-  // const Author = ({ image, name, email }) => (
-  //   <MDBox display="flex" alignItems="center" lineHeight={1}>
-  //     <MDAvatar src={image} name={name} size="sm" />
-  //     <MDBox ml={2} lineHeight={1}>
-  //       <MDTypography display="block" variant="button" fontWeight="medium">
-  //         {name}
-  //       </MDTypography>
-  //       <MDTypography variant="caption">{email}</MDTypography>
-  //     </MDBox>
-  //   </MDBox>
-  // );
-
-  // const Job = ({ title, description }) => (
-  //   <MDBox lineHeight={1} textAlign="left">
-  //     <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
-  //       {title}
-  //     </MDTypography>
-  //     <MDTypography variant="caption">{description}</MDTypography>
-  //   </MDBox>
-  // );
-
   return {
     columns: [
       { Header: "Image & Name", accessor: "item", align: "left" },
@@ -276,7 +333,7 @@ export default function data() {
       { Header: "Heat", accessor: "heat", align: "left" },
     ],
 
-    rows: processedFakeData,
+    rows: staticData,
 
     // rows: [
     //   {
