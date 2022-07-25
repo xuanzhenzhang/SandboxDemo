@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useState, useEffect } from "react";
 
 // react-router components
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
@@ -35,7 +35,7 @@ import MDInput from "components/MDInput";
 import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
-import Breadcrumbs from "examples/Breadcrumbs";
+// import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
 
 // Custom styles for DashboardNavbar
@@ -63,7 +63,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
   const [openMenu, setOpenMenu] = useState(false);
-  const route = useLocation().pathname.split("/").slice(1);
+  // const route = useLocation().pathname.split("/").slice(1);
 
   useEffect(() => {
     // Setting the navbar type
@@ -142,44 +142,44 @@ function DashboardNavbar({ absolute, light, isMini }) {
             width={60}
             style={{ borderRadius: 5, marginRight: "20px" }}
           />
-          <MDBox mr={{ xs: 0, xl: 8 }}>
-            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "dark"} noWrap>
+          <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
               Sandbox
             </MDTypography>
             <Link href="https://www.sandbox.game" target="_blank">
-              <MDTypography variant="h6" fontWeight="light">
+              <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
                 www.sandbox.game
               </MDTypography>
             </Link>
           </MDBox>
-          <MDBox mr={{ xs: 0, xl: 8 }}>
-            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "dark"} noWrap>
+          <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
               160K ETH
             </MDTypography>
-            <MDTypography variant="h6" fontWeight="light">
+            <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
               Market cap
             </MDTypography>
           </MDBox>
-          <MDBox mr={{ xs: 0, xl: 8 }}>
-            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "dark"} noWrap>
+          <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
               260K ETH
             </MDTypography>
-            <MDTypography variant="h6" fontWeight="light">
+            <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
               Volume
             </MDTypography>
           </MDBox>
-          <MDBox mr={{ xs: 0, xl: 8 }}>
-            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "dark"} noWrap>
+          <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
               2 ETH
             </MDTypography>
-            <MDTypography variant="h6" fontWeight="light">
+            <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
               Floor
             </MDTypography>
           </MDBox>
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
-            <MDBox pr={1}>
+            <MDBox pr={1} color={light ? "white" : "inherit"}>
               <MDInput label="Search here" />
             </MDBox>
             <MDBox color={light ? "white" : "inherit"}>
