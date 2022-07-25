@@ -41,7 +41,7 @@ export default function data() {
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <img src={image} alt={name} width={50} style={{ borderRadius: 5 }} />
       <MDBox ml={2} lineHeight={1}>
-        <MDTypography display="block" variant="button" fontWeight="medium">
+        <MDTypography display="block" variant="button" fontWeight="medium" color="text">
           {name}
         </MDTypography>
       </MDBox>

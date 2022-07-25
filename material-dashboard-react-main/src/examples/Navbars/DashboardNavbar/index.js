@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useState, useEffect } from "react";
 
 // react-router components
-import { useLocation, Link } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
@@ -27,13 +27,15 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
+import Link from "@mui/material/Link";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDInput from "components/MDInput";
+import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
-import Breadcrumbs from "examples/Breadcrumbs";
+// import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
 
 // Custom styles for DashboardNavbar
@@ -53,12 +55,15 @@ import {
   setOpenConfigurator,
 } from "context";
 
+// image
+import logoSandBox from "assets/images/logos/sandbox_logo.png";
+
 function DashboardNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useMaterialUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator, darkMode } = controller;
   const [openMenu, setOpenMenu] = useState(false);
-  const route = useLocation().pathname.split("/").slice(1);
+  // const route = useLocation().pathname.split("/").slice(1);
 
   useEffect(() => {
     // Setting the navbar type
@@ -131,19 +136,56 @@ function DashboardNavbar({ absolute, light, isMini }) {
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
         <MDBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
-          <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} />
+          <img
+            src={logoSandBox}
+            alt="Sandbox"
+            width={60}
+            style={{ borderRadius: 5, marginRight: "20px" }}
+          />
+          <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
+              Sandbox
+            </MDTypography>
+            <Link href="https://www.sandbox.game" target="_blank">
+              <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
+                www.sandbox.game
+              </MDTypography>
+            </Link>
+          </MDBox>
+          <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
+              160K ETH
+            </MDTypography>
+            <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
+              Market cap
+            </MDTypography>
+          </MDBox>
+          <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
+              260K ETH
+            </MDTypography>
+            <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
+              Volume
+            </MDTypography>
+          </MDBox>
+          <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
+            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
+              2 ETH
+            </MDTypography>
+            <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
+              Floor
+            </MDTypography>
+          </MDBox>
         </MDBox>
         {isMini ? null : (
           <MDBox sx={(theme) => navbarRow(theme, { isMini })}>
-            <MDBox pr={1}>
+            <MDBox pr={1} color={light ? "white" : "inherit"}>
               <MDInput label="Search here" />
             </MDBox>
             <MDBox color={light ? "white" : "inherit"}>
-              <Link to="/authentication/sign-in/basic">
-                <IconButton sx={navbarIconButton} size="small" disableRipple>
-                  <Icon sx={iconsStyle}>account_circle</Icon>
-                </IconButton>
-              </Link>
+              <IconButton sx={navbarIconButton} size="small" disableRipple>
+                <Icon sx={iconsStyle}>account_circle</Icon>
+              </IconButton>
               <IconButton
                 size="small"
                 disableRipple

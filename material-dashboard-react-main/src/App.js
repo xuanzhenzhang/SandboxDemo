@@ -29,6 +29,7 @@ import MDBox from "components/MDBox";
 // Material Dashboard 2 React example components
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
+import Profile from "layouts/profile";
 
 // Material Dashboard 2 React themes
 import theme from "assets/theme";
@@ -152,25 +153,26 @@ export default function App() {
 
   return direction === "rtl" ? (
     <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
+      <ThemeProvider theme={themeDarkRTL}>
         <CssBaseline />
         {layout === "dashboard" && (
           <>
             <Sidenav
               color={sidenavColor}
-              brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+              brand={(transparentSidenav && false) || whiteSidenav ? brandDark : brandWhite}
               // brandName="SYGNAL XYZ"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
-            <Configurator />
+            {/* <Configurator /> */}
             {configsButton}
           </>
         )}
         {layout === "vr" && <Configurator />}
         <Routes>
           <Route path="*" element={<Navigate to="/dashboard" />} />
+          <Route path="/profile" element={<Profile />} />
           {/* <Route path="/dashboard" element={<Navigate to="/dashboard" />} /> */}
           {/* <Route path="/tables" element={<Navigate to="/tables" />} /> */}
           {getRoutes(routes)}
@@ -178,25 +180,26 @@ export default function App() {
       </ThemeProvider>
     </CacheProvider>
   ) : (
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
+    <ThemeProvider theme={themeDark}>
       <CssBaseline />
       {layout === "dashboard" && (
         <>
           <Sidenav
             color={sidenavColor}
-            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brand={(transparentSidenav && false) || whiteSidenav ? brandDark : brandWhite}
             // brandName="SYGNAL XYZ"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
-          <Configurator />
+          {/* <Configurator /> */}
           {configsButton}
         </>
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
         <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="/profile" element={<Profile />} />
         {getRoutes(routes)}
       </Routes>
     </ThemeProvider>
