@@ -79,7 +79,7 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
         <MDTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
           {label}
         </MDTypography>
-        <MDBox mb={1}>
+        {/* <MDBox mb={1}>
           {action.type === "internal" ? (
             <MDTypography
               component={Link}
@@ -101,14 +101,25 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
               {title}
             </MDTypography>
           )}
-        </MDBox>
-        <MDBox mb={3} lineHeight={0}>
+        </MDBox> */}
+        {/* <MDBox mb={3} lineHeight={0}>
           <MDTypography variant="button" fontWeight="light" color="text">
             {description}
           </MDTypography>
+        </MDBox> */}
+        <MDBox display="flex" justifyContent="space-between" alignItems="center">
+          <MDTypography color="text" variant="button">
+            Name
+          </MDTypography>
+          <MDTypography color="text" variant="button">
+            Appraisal
+          </MDTypography>
         </MDBox>
         <MDBox display="flex" justifyContent="space-between" alignItems="center">
-          {action.type === "internal" ? (
+          <MDTypography color="text" variant="button">
+            Token Id
+          </MDTypography>
+          {/* {action.type === "internal" ? (
             <MDButton
               component={Link}
               to={action.route}
@@ -130,8 +141,11 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
             >
               {action.label}
             </MDButton>
-          )}
-          <MDBox display="flex">{renderAuthors}</MDBox>
+          )} */}
+          {/* <MDBox display="flex">{renderAuthors}</MDBox> */}
+          <MDTypography color="text" variant="button">
+            Value
+          </MDTypography>
         </MDBox>
       </MDBox>
     </Card>

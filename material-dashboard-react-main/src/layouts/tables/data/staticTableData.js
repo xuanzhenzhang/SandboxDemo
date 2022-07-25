@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+import { Link } from "react-router-dom";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -29,14 +30,16 @@ import team4 from "assets/images/team-4.jpg";
 
 export default function data() {
   const Land = ({ image, name }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <img src={image} alt={name} width={50} style={{ borderRadius: 5 }} />
-      <MDBox ml={2} lineHeight={1}>
-        <MDTypography display="block" variant="button" fontWeight="medium">
-          {name}
-        </MDTypography>
+    <Link to="/profile">
+      <MDBox display="flex" alignItems="center" lineHeight={1}>
+        <img src={image} alt={name} width={50} style={{ borderRadius: 5 }} />
+        <MDBox ml={2} lineHeight={1}>
+          <MDTypography display="block" variant="button" fontWeight="medium" color="text">
+            {name}
+          </MDTypography>
+        </MDBox>
       </MDBox>
-    </MDBox>
+    </Link>
   );
 
   const Popularity = ({ color, value }) => (

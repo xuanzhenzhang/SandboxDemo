@@ -26,6 +26,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+import InfiniteTable from "examples/Tables/InfiniteTable";
 
 // Data
 import staticTableData from "layouts/tables/data/staticTableData";
@@ -56,11 +57,10 @@ export function LiveTable() {
                 </MDTypography>
               </MDBox> */}
               <MDBox pt={3}>
-                <DataTable
+                <InfiniteTable
                   table={{ columns: pColumns, rows: pRows }}
                   isSorted
-                  entriesPerPage={false}
-                  showTotalEntries={false}
+                  entriesPerPage={10000}
                   noEndBorder
                 />
               </MDBox>
@@ -98,13 +98,7 @@ export function StaticTable() {
                 </MDTypography>
               </MDBox> */}
               <MDBox pt={3}>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
+                <DataTable table={{ columns, rows }} isSorted noEndBorder />
               </MDBox>
             </Card>
           </Grid>
