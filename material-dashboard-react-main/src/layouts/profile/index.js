@@ -12,7 +12,6 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
@@ -68,12 +67,70 @@ function Overview() {
               src={backgroundImage}
               alt="img"
               width="90%"
-              style={{ borderRadius: 5, alignSelf: "center" }}
+              style={{ borderRadius: 5, marginLeft: 20 }}
             />
           </MDBox>
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
-          <MDBox mb={3}>hello</MDBox>
+          <MDBox mb={3} mx={3} p={3} sx={{ backgroundColor: "#EBEFF4", borderRadius: 1 }}>
+            <MDBox display="flex" justifyContent="space-between" alignItems="center">
+              <MDTypography
+                variant="h5"
+                fontWeight="heavy"
+                color="black"
+                textTransform="capitalize"
+              >
+                Land (102, 100)
+              </MDTypography>
+              <MDTypography color="black" variant="h5" fontWeight="heavy">
+                2 ETH
+              </MDTypography>
+            </MDBox>
+            <MDBox display="flex" justifyContent="space-between" alignItems="center">
+              <MDTypography
+                variant="button"
+                fontWeight="regular"
+                color="black"
+                textTransform="capitalize"
+              >
+                10013
+              </MDTypography>
+              <MDTypography color="black" variant="button" fontWeight="regular">
+                Current Price
+              </MDTypography>
+            </MDBox>
+          </MDBox>
+          <MDBox mb={3} mx={3} p={3} sx={{ backgroundColor: "#EBEFF4", borderRadius: 1 }}>
+            <MDBox display="flex" justifyContent="space-between" alignItems="center">
+              <MDTypography
+                variant="h5"
+                fontWeight="heavy"
+                color="success"
+                textTransform="capitalize"
+              >
+                Underpriced
+              </MDTypography>
+              <MDTypography color="success" variant="h5" fontWeight="heavy">
+                1.5 ETH
+              </MDTypography>
+            </MDBox>
+            <MDBox display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+              <MDTypography
+                variant="button"
+                fontWeight="regular"
+                color="black"
+                textTransform="capitalize"
+              >
+                {" "}
+              </MDTypography>
+              <MDTypography color="black" variant="button" fontWeight="regular">
+                Appraisal Value
+              </MDTypography>
+            </MDBox>
+            <MDTypography color="black" variant="button" fontWeight="regular">
+              This asset is trading at <b>34%</b> below its appraisal value at <b>1.2 ETH</b>
+            </MDTypography>
+          </MDBox>
         </Grid>
       </Grid>
       <Grid container spacing={3}>
@@ -81,8 +138,8 @@ function Overview() {
           <MDBox mb={3}>
             <ReportsLineChart
               color="success"
-              title=""
-              description={<>Land Appraisal value history</>}
+              title="Land Appraisal value history"
+              description=""
               date="updated 4 min ago"
               chart={sales}
             />
@@ -92,8 +149,8 @@ function Overview() {
           <MDBox mb={3}>
             <ReportsLineChart
               color="warning"
-              title=""
-              description="Neighbourhood (within 10 radius historic sales)"
+              title="Neighbourhood (within 10 radius historic sales)"
+              description=""
               date="updated 1 day ago"
               chart={sales}
             />
@@ -158,81 +215,54 @@ function Overview() {
           <Grid item xs={12} md={6} xl={3}>
             <DefaultProjectCard
               image={homeDecor1}
-              label="project #1"
+              label="Land (110, 40)"
               title="modern"
-              description="As Uber works through a huge amount of internal management turmoil."
-              action={{
-                type: "internal",
-                route: "/pages/profile/profile-overview",
-                color: "info",
-                label: "view project",
-              }}
-              authors={[
-                { image: team1, name: "Elena Morison" },
-                { image: team2, name: "Ryan Milly" },
-                { image: team3, name: "Nick Daniel" },
-                { image: team4, name: "Peterson" },
-              ]}
+              tokenId="203400"
+              appraisalValue={2.5}
+              currentValue={1.5}
             />
           </Grid>
           <Grid item xs={12} md={6} xl={3}>
             <DefaultProjectCard
               image={homeDecor2}
-              label="project #2"
+              label="Land (90, 10)"
               title="scandinavian"
-              description="Music is something that everyone has their own specific opinion about."
-              action={{
-                type: "internal",
-                route: "/pages/profile/profile-overview",
-                color: "info",
-                label: "view project",
-              }}
-              authors={[
-                { image: team3, name: "Nick Daniel" },
-                { image: team4, name: "Peterson" },
-                { image: team1, name: "Elena Morison" },
-                { image: team2, name: "Ryan Milly" },
-              ]}
+              // description="Music is something that everyone has their own specific opinion about."
+              // action={{
+              //   type: "internal",
+              //   route: "/pages/profile/profile-overview",
+              //   color: "info",
+              //   label: "view project",
+              // }}
+              // authors={[
+              //   { image: team3, name: "Nick Daniel" },
+              //   { image: team4, name: "Peterson" },
+              //   { image: team1, name: "Elena Morison" },
+              //   { image: team2, name: "Ryan Milly" },
+              // ]}
+              tokenId="763211"
+              appraisalValue={0.9}
+              currentValue={1.5}
             />
           </Grid>
           <Grid item xs={12} md={6} xl={3}>
             <DefaultProjectCard
               image={homeDecor3}
-              label="project #3"
+              label="Land (100,8)"
               title="minimalist"
-              description="Different people have different taste, and various types of music."
-              action={{
-                type: "internal",
-                route: "/pages/profile/profile-overview",
-                color: "info",
-                label: "view project",
-              }}
-              authors={[
-                { image: team4, name: "Peterson" },
-                { image: team3, name: "Nick Daniel" },
-                { image: team2, name: "Ryan Milly" },
-                { image: team1, name: "Elena Morison" },
-              ]}
+              tokenId="54364"
+              appraisalValue={0.5}
+              currentValue={0.5}
             />
           </Grid>
           <Grid item xs={12} md={6} xl={3}>
             <DefaultProjectCard
               image={homeDecor4}
-              label="project #4"
+              label="Land (100,11)"
               title="gothic"
-              description="Why would anyone pick blue over pink? Pink is obviously a better color."
-              action={{
-                type: "internal",
-                route: "/pages/profile/profile-overview",
-                color: "info",
-                label: "view project",
-              }}
-              authors={[
-                { image: team4, name: "Peterson" },
-                { image: team3, name: "Nick Daniel" },
-                { image: team2, name: "Ryan Milly" },
-                { image: team1, name: "Elena Morison" },
-              ]}
+              tokenId="10231"
+              appraisalValue={4}
+              currentValue={5}
             />
           </Grid>
         </Grid>
