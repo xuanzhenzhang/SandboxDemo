@@ -31,26 +31,26 @@ import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import MDAvatar from "components/MDAvatar";
 
-function DefaultProjectCard({ image, label, title, description, action, authors }) {
-  const renderAuthors = authors.map(({ image: media, name }) => (
-    <Tooltip key={name} title={name} placement="bottom">
-      <MDAvatar
-        src={media}
-        alt={name}
-        size="xs"
-        sx={({ borders: { borderWidth }, palette: { white } }) => ({
-          border: `${borderWidth[2]} solid ${white.main}`,
-          cursor: "pointer",
-          position: "relative",
-          ml: -1.25,
+function DefaultProjectCard({ image, label, title, tokenId, appraisalValue, currentValue }) {
+  // const renderAuthors = authors.map(({ image: media, name }) => (
+  //   <Tooltip key={name} title={name} placement="bottom">
+  //     <MDAvatar
+  //       src={media}
+  //       alt={name}
+  //       size="xs"
+  //       sx={({ borders: { borderWidth }, palette: { white } }) => ({
+  //         border: `${borderWidth[2]} solid ${white.main}`,
+  //         cursor: "pointer",
+  //         position: "relative",
+  //         ml: -1.25,
 
-          "&:hover, &:focus": {
-            zIndex: "10",
-          },
-        })}
-      />
-    </Tooltip>
-  ));
+  //         "&:hover, &:focus": {
+  //           zIndex: "10",
+  //         },
+  //       })}
+  //     />
+  //   </Tooltip>
+  // ));
 
   return (
     <Card
@@ -76,10 +76,15 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
           }}
         />
       </MDBox>
-      <MDBox mt={1} mx={0.5}>
-        <MDTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
-          {label}
-        </MDTypography>
+      <MDBox mt={1} mx={1}>
+        <MDBox display="flex" justifyContent="space-between" alignItems="center">
+          <MDTypography variant="h5" fontWeight="regular" color="text" textTransform="capitalize">
+            {label}
+          </MDTypography>
+          <MDTypography color="text" variant="button" fontWeight="regular">
+            {tokenId}
+          </MDTypography>
+        </MDBox>
         {/* <MDBox mb={1}>
           {action.type === "internal" ? (
             <MDTypography
@@ -108,17 +113,17 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
             {description}
           </MDTypography>
         </MDBox> */}
-        <MDBox display="flex" justifyContent="space-between" alignItems="center">
+        <MDBox display="flex" justifyContent="space-between" alignItems="center" mt={3}>
           <MDTypography color="text" variant="button">
-            Name
+            Appraisal Value
           </MDTypography>
           <MDTypography color="text" variant="button">
-            Appraisal
+            {appraisalValue} ETH
           </MDTypography>
         </MDBox>
-        <MDBox display="flex" justifyContent="space-between" alignItems="center">
+        <MDBox display="flex" justifyContent="space-between" alignItems="center" mt={1}>
           <MDTypography color="text" variant="button">
-            Token Id
+            Current Value
           </MDTypography>
           {/* {action.type === "internal" ? (
             <MDButton
@@ -145,7 +150,7 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
           )} */}
           {/* <MDBox display="flex">{renderAuthors}</MDBox> */}
           <MDTypography color="text" variant="button">
-            Value
+            {currentValue} ETH
           </MDTypography>
         </MDBox>
       </MDBox>
@@ -154,33 +159,36 @@ function DefaultProjectCard({ image, label, title, description, action, authors 
 }
 
 // Setting default values for the props of DefaultProjectCard
-DefaultProjectCard.defaultProps = {
-  authors: [],
-};
+// DefaultProjectCard.defaultProps = {
+//   authors: [],
+// };
 
 // Typechecking props for the DefaultProjectCard
 DefaultProjectCard.propTypes = {
   image: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  action: PropTypes.shape({
-    type: PropTypes.oneOf(["external", "internal"]),
-    route: PropTypes.string.isRequired,
-    color: PropTypes.oneOf([
-      "primary",
-      "secondary",
-      "info",
-      "success",
-      "warning",
-      "error",
-      "light",
-      "dark",
-      "white",
-    ]).isRequired,
-    label: PropTypes.string.isRequired,
-  }).isRequired,
-  authors: PropTypes.arrayOf(PropTypes.object),
+  // description: PropTypes.string.isRequired,
+  // action: PropTypes.shape({
+  //   type: PropTypes.oneOf(["external", "internal"]),
+  //   route: PropTypes.string.isRequired,
+  //   color: PropTypes.oneOf([
+  //     "primary",
+  //     "secondary",
+  //     "info",
+  //     "success",
+  //     "warning",
+  //     "error",
+  //     "light",
+  //     "dark",
+  //     "white",
+  //   ]).isRequired,
+  //   label: PropTypes.string.isRequired,
+  // }).isRequired,
+  // authors: PropTypes.arrayOf(PropTypes.object),
+  tokenId: PropTypes.string.isRequired,
+  appraisalValue: PropTypes.number.isRequired,
+  currentValue: PropTypes.number.isRequired,
 };
 
 export default DefaultProjectCard;

@@ -143,36 +143,36 @@ function DashboardNavbar({ absolute, light, isMini }) {
             style={{ borderRadius: 5, marginRight: "20px" }}
           />
           <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
-            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
+            <MDTypography fontWeight="bold" variant="h5" color="white" noWrap>
               Sandbox
             </MDTypography>
             <Link href="https://www.sandbox.game" target="_blank">
-              <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
+              <MDTypography variant="h6" fontWeight="light" color="white">
                 www.sandbox.game
               </MDTypography>
             </Link>
           </MDBox>
           <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
-            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
+            <MDTypography fontWeight="bold" variant="h5" color="white" noWrap>
               160K ETH
             </MDTypography>
-            <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
+            <MDTypography variant="h6" fontWeight="light" color="white">
               Market cap
             </MDTypography>
           </MDBox>
           <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
-            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
+            <MDTypography fontWeight="bold" variant="h5" color="white" noWrap>
               260K ETH
             </MDTypography>
-            <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
+            <MDTypography variant="h6" fontWeight="light" color="white">
               Volume
             </MDTypography>
           </MDBox>
-          <MDBox mr={{ xs: 0, xl: 8 }} color={light ? "white" : "inherit"}>
-            <MDTypography fontWeight="bold" variant="h5" color={light ? "white" : "inherit"} noWrap>
+          <MDBox mr={{ xs: 0, xl: 8 }} color="white">
+            <MDTypography fontWeight="bold" variant="h5" color="white" noWrap>
               2 ETH
             </MDTypography>
-            <MDTypography variant="h6" fontWeight="light" color={light ? "white" : "inherit"}>
+            <MDTypography variant="h6" fontWeight="light" color="white">
               Floor
             </MDTypography>
           </MDBox>
