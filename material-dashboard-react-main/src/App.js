@@ -31,10 +31,6 @@ import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 import Profile from "layouts/profile";
 
-// Material Dashboard 2 React themes
-import theme from "assets/theme";
-import themeRTL from "assets/theme/theme-rtl";
-
 // Material Dashboard 2 React Dark Mode themes
 import themeDark from "assets/theme-dark";
 import themeDarkRTL from "assets/theme-dark/theme-rtl";
